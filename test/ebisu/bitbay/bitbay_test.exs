@@ -1,6 +1,6 @@
 defmodule Ebisu.BitbayTest do
   use ExUnit.Case
 
-  test "" do
+  test "adds ticker" do
   end
 end
