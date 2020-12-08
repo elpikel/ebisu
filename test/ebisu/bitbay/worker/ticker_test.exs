@@ -1,4 +1,4 @@
-defmodule Ebisu.Bitbay.Worker.Ticker do
+defmodule Ebisu.Bitbay.Worker.TickerTest do
   use ExUnit.Case
 
   test "todo" do
