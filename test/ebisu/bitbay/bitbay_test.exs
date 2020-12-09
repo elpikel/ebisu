@@ -4,6 +4,6 @@ defmodule Ebisu.BitbayTest do
   alias Ebisu.Bitbay
 
   test "adds ticker" do
-    {:ok, changeset} = Bitbay.add_ticker() |> IO.inspect()
+    {:ok, changeset} = Bitbay.add_ticker()
   end
 end

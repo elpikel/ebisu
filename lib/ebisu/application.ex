@@ -3,9 +3,12 @@ defmodule Ebisu.Application do
 
   use Application
 
+  alias Ebisu.Bitbay.Worker.Ticker, as: BitbayTicker
+
   def start(_type, _args) do
     children = [
-      Ebisu.Repo
+      Ebisu.Repo,
+      BitbayTicker
     ]
 
     opts = [strategy: :one_for_one, name: Ebisu.Supervisor]
