@@ -1,9 +1,9 @@
 defmodule Ebisu.BitbayTest do
-  use ExUnit.Case
+  use Ebisu.RepoCase
 
   alias Ebisu.Bitbay
 
   test "adds ticker" do
-    {:ok, changeset} = Bitbay.add_ticker()
+    {:ok, _changeset} = Bitbay.add_ticker()
   end
 end

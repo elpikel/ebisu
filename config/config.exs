@@ -1,9 +1,5 @@
 import Config
 
-config :ebisu, Ebisu.Repo,
-  database: "ebisu",
-  username: "postgres",
-  password: "postgres",
-  hostname: "localhost"
-
 config :ebisu, ecto_repos: [Ebisu.Repo]
+
+import_config "#{Mix.env()}.exs"

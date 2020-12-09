@@ -1,4 +1,6 @@
 defmodule Ebisu.Bitbay.Worker.TickerTest do
+  use Ebisu.RepoCase
+
   alias Ebisu.Bitbay.Worker.Ticker, as: TickerWorker
   alias Ebisu.Bitbay.Ticker
 
@@ -8,7 +10,9 @@ defmodule Ebisu.Bitbay.Worker.TickerTest do
     %{ticker_worker: ticker_worker}
   end
 
-  test "inserts message", %{ticker_worker: ticker_worker} do
+  test "inserts message" do
     Process.sleep(1000)
+
+    assert Repo.aggregate(Ticker, :count) > 0
   end
 end
