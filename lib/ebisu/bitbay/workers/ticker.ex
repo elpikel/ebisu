@@ -3,7 +3,7 @@ defmodule Ebisu.Bitbay.Worker.Ticker do
 
   alias Ebisu.Bitbay
 
-  @default_interval 60_000
+  @default_interval 6_000
 
   def start_link(state \\ []) do
     GenServer.start_link(__MODULE__, state)
@@ -17,7 +17,9 @@ defmodule Ebisu.Bitbay.Worker.Ticker do
 
   def handle_info(:add_ticker, state) do
     schedule_ticker_add(state)
-    Bitbay.add_ticker()
+    {:ok, ticker} = Bitbay.add_ticker()
+
+    Phoenix.PubSub.broadcast(Ebisu.PubSub, "ticker", ticker)
 
     {:noreply, state}
   end
