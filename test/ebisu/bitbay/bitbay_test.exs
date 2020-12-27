@@ -1,5 +1,5 @@
 defmodule Ebisu.BitbayTest do
-  use Ebisu.RepoCase
+  use Ebisu.DataCase
 
   alias Ebisu.Bitbay
 

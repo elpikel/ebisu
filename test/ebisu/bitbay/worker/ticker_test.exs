@@ -1,5 +1,5 @@
 defmodule Ebisu.Bitbay.Worker.TickerTest do
-  use Ebisu.RepoCase
+  use Ebisu.DataCase
 
   alias Ebisu.Bitbay.Worker.Ticker, as: TickerWorker
   alias Ebisu.Bitbay.Ticker
