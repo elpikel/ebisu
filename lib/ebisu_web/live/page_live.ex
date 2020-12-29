@@ -24,26 +24,22 @@ defmodule EbisuWeb.PageLive do
 
   @impl true
   def handle_info(%ExchangeTicker{} = ticker, socket) do
-    exchange_tickers =
-      socket.assigns.tickers.exchange
-      |> add(ticker)
-      |> window()
-
-    tickers = %{socket.assigns.tickers | exchange: exchange_tickers}
-
-    socket = assign(socket, tickers: tickers)
-
-    {:noreply, push_event(socket, "tickers", %{tickers: tickers})}
+    handle_new_ticker(ticker, socket, :exchange)
   end
 
   @impl true
   def handle_info(%BitbayTicker{} = ticker, socket) do
-    bitbay_tickers =
-      socket.assigns.tickers.bitbay
+    handle_new_ticker(ticker, socket, :bitbay)
+  end
+
+  defp handle_new_ticker(ticker, socket, type) do
+    tickers =
+      socket.assigns.tickers
+      |> Map.get(type)
       |> add(ticker)
       |> window()
 
-    tickers = %{socket.assigns.tickers | bitbay: bitbay_tickers}
+    tickers = Map.put(socket.assigns.tickers, type, tickers)
 
     socket = assign(socket, tickers: tickers)
 
