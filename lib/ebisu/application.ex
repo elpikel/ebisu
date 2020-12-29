@@ -6,6 +6,7 @@ defmodule Ebisu.Application do
   use Application
 
   alias Ebisu.Bitbay.Worker.Ticker, as: BitbayTicker
+  alias Ebisu.Exchange.Worker.Ticker, as: ExchangeTicker
 
   def start(_type, _args) do
     children = [
@@ -19,7 +20,8 @@ defmodule Ebisu.Application do
       EbisuWeb.Endpoint,
       # Start a worker by calling: Ebisu.Worker.start_link(arg)
       # {Ebisu.Worker, arg}
-      BitbayTicker
+      BitbayTicker,
+      ExchangeTicker
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

@@ -1,1 +1,5 @@
-<%= inspect(@ticker) %>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
+<div phx-update="ignore">
+  <canvas id="chart" phx-hook="Chart" data-tickers="<%= Poison.encode!(@tickers) %>"></canvas>
+</div>

@@ -3,7 +3,7 @@ defmodule Ebisu.Bitbay.Ticker do
 
   import Ecto.Changeset
 
-  @fields [:max, :min, :last, :bid, :ask, :vwap, :average, :volume]
+  @fields [:max, :min, :last, :bid, :ask, :vwap, :average, :volume, :rate]
 
   schema "bitbay_tickers" do
     field(:max, :float)
@@ -14,6 +14,7 @@ defmodule Ebisu.Bitbay.Ticker do
     field(:vwap, :float)
     field(:average, :float)
     field(:volume, :float)
+    field(:rate, :float)
 
     timestamps(type: :utc_datetime)
   end

@@ -1,7 +1,7 @@
-defmodule Ebisu.Bitbay.Worker.Ticker do
+defmodule Ebisu.Exchange.Worker.Ticker do
   use GenServer
 
-  alias Ebisu.Bitbay
+  alias Ebisu.Exchange
 
   @default_interval 6_000
 
@@ -17,9 +17,9 @@ defmodule Ebisu.Bitbay.Worker.Ticker do
 
   def handle_info(:add_ticker, state) do
     schedule_ticker_add(state)
-    {:ok, ticker} = Bitbay.add_ticker()
+    {:ok, ticker} = Exchange.add_ticker()
 
-    Phoenix.PubSub.broadcast(Ebisu.PubSub, "bitbay_ticker", ticker)
+    Phoenix.PubSub.broadcast(Ebisu.PubSub, "exchange_ticker", ticker)
 
     {:noreply, state}
   end

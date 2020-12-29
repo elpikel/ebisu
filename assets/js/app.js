@@ -17,8 +17,39 @@ import {Socket} from "phoenix"
 import NProgress from "nprogress"
 import {LiveSocket} from "phoenix_live_view"
 
+let Hooks = {};
+Hooks.Chart = {
+    tickers() { return JSON.parse(this.el.dataset.tickers) },
+    mounted() {
+        let ctx = this.el.getContext('2d');
+        let chart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: this.tickers().bitbay.map(ticker => ticker.x),
+                datasets: [{
+                    label: 'Bitbay',
+                    borderColor: 'rgb(255, 99, 132)',
+                    data: this.tickers().bitbay.map(ticker => ticker.y)
+                },{
+                    label: 'Exchange',
+                    borderColor: 'rgb(155, 49, 32)',
+                    data: this.tickers().exchange.map(ticker => ticker.y)
+                }]
+            },
+            options: {}
+        });
+
+        this.handleEvent("tickers", (data) => {
+            chart.data.datasets[0].data = data.tickers.bitbay.map(ticker => ticker.y);
+            chart.data.datasets[1].data = data.tickers.exchange.map(ticker => ticker.y);
+            chart.data.labels = data.tickers.bitbay.map(ticker => ticker.x);
+            chart.update();
+        });
+    }
+};
+
 let csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute("content")
-let liveSocket = new LiveSocket("/live", Socket, {params: {_csrf_token: csrfToken}})
+let liveSocket = new LiveSocket("/live", Socket, {hooks: Hooks, params: {_csrf_token: csrfToken}})
 
 // Show progress bar on live navigation and form submits
 window.addEventListener("phx:page-loading-start", info => NProgress.start())

@@ -1,23 +1,17 @@
 defmodule Ebisu.Bitbay.Clients.Http do
-  @timeout 5000
+  alias Ebisu.Utils.Http
 
   # {"max":4500,"min":1465,"last":1533,"bid":1513,"ask":1542,"vwap":1524.42,"average":1545.67,"volume":4.54042857}
   def get_ticker do
-    {:ok, ticker} = get("https://bitbay.net/API/Public/BTCPLN/ticker.json")
-
-    ticker
+    Http.get("https://bitbay.net/API/Public/BTCPLN/ticker.json")
   end
 
-  defp get(url) do
-    case HTTPoison.get(url, [{"content-type", "application/json"}], recv_timeout: @timeout) do
-      {:ok, %HTTPoison.Response{body: body, status_code: 200}} ->
-        Jason.decode(body)
+  def get_rate do
+    rate = Http.get("http://api.nbp.pl/api/exchangerates/rates/a/usd/?format=json")
 
-      {:ok, %HTTPoison.Response{body: body}} ->
-        {:error, body}
-
-      {:error, %HTTPoison.Error{reason: reason}} ->
-        {:error, reason}
-    end
+    rate
+    |> Map.get("rates")
+    |> Enum.at(0)
+    |> Map.get("mid")
   end
 end
