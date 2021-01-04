@@ -17,6 +17,7 @@ defmodule Ebisu.Bitbay.Worker.Ticker do
 
   def handle_info(:add_ticker, state) do
     schedule_ticker_add(state)
+
     {:ok, ticker} = Bitbay.add_ticker()
 
     Phoenix.PubSub.broadcast(Ebisu.PubSub, "bitbay_ticker", ticker)
