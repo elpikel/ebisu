@@ -34,6 +34,10 @@ Hooks.Chart = {
                     label: 'Exchange',
                     borderColor: 'rgb(155, 49, 32)',
                     data: this.tickers().exchange.map(ticker => ticker.y)
+                },{
+                    label: 'Bittrex',
+                    borderColor: 'rgb(55, 149, 32)',
+                    data: this.tickers().bittrex.map(ticker => ticker.y)
                 }]
             },
             options: {}
@@ -42,6 +46,7 @@ Hooks.Chart = {
         this.handleEvent("tickers", (data) => {
             chart.data.datasets[0].data = data.tickers.bitbay.map(ticker => ticker.y);
             chart.data.datasets[1].data = data.tickers.exchange.map(ticker => ticker.y);
+            chart.data.datasets[2].data = data.tickers.bittrex.map(ticker => ticker.y);
             chart.data.labels = data.tickers.bitbay.map(ticker => ticker.x);
             chart.update();
         });
