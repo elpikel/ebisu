@@ -8,6 +8,7 @@ defmodule Ebisu.Application do
   alias Ebisu.Bitbay.Worker.Ticker, as: BitbayTicker
   alias Ebisu.Exchange.Worker.Ticker, as: ExchangeTicker
   alias Ebisu.Bittrex.Worker.Ticker, as: BittrexTicker
+  alias Ebisu.Cex.Worker.Ticker, as: CexTicker
 
   def start(_type, _args) do
     children = [
@@ -23,7 +24,8 @@ defmodule Ebisu.Application do
       # {Ebisu.Worker, arg}
       BitbayTicker,
       ExchangeTicker,
-      BittrexTicker
+      BittrexTicker,
+      CexTicker
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

@@ -7,6 +7,8 @@ defmodule EbisuWeb.PageLive do
   alias Ebisu.Exchange.Ticker, as: ExchangeTicker
   alias Ebisu.Bittrex
   alias Ebisu.Bittrex.Ticker, as: BittrexTicker
+  alias Ebisu.Cex
+  alias Ebisu.Cex.Ticker, as: CexTicker
 
   @impl true
   def mount(_params, _session, socket) do
@@ -14,6 +16,7 @@ defmodule EbisuWeb.PageLive do
       Phoenix.PubSub.subscribe(Ebisu.PubSub, "bitbay_ticker")
       Phoenix.PubSub.subscribe(Ebisu.PubSub, "exchange_ticker")
       Phoenix.PubSub.subscribe(Ebisu.PubSub, "bittrex_ticker")
+      Phoenix.PubSub.subscribe(Ebisu.PubSub, "cex_ticker")
     end
 
     {:ok,
@@ -21,7 +24,8 @@ defmodule EbisuWeb.PageLive do
        tickers: %{
          bitbay: format(Bitbay.tickers()),
          exchange: format(Exchange.tickers()),
-         bittrex: format(Bittrex.tickers())
+         bittrex: format(Bittrex.tickers()),
+         cex: format(Cex.tickers())
        }
      )}
   end
@@ -39,6 +43,11 @@ defmodule EbisuWeb.PageLive do
   @impl true
   def handle_info(%BittrexTicker{} = ticker, socket) do
     handle_new_ticker(ticker, socket, :bittrex)
+  end
+
+  @impl true
+  def handle_info(%CexTicker{} = ticker, socket) do
+    handle_new_ticker(ticker, socket, :cex)
   end
 
   defp handle_new_ticker(ticker, socket, type) do

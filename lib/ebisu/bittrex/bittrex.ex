@@ -7,18 +7,11 @@ defmodule Ebisu.Bittrex do
   import Ecto.Query
 
   def add_ticker do
-    ticker = Http.get_ticker() |> IO.inspect()
-    summary = Http.get_summary() |> IO.inspect()
+    ticker = Http.get_ticker()
+    summary = Http.get_summary()
 
-    %{
-      high: summary["high"],
-      low: summary["low"],
-      volume: summary["volume"],
-      quoteVolume: summary["quoteVolume"],
-      last: ticker["lastTradeRate"],
-      bid: ticker["bidRate"],
-      ask: ticker["askRate"]
-    }
+    ticker
+    |> combine(summary)
     |> Ticker.changeset()
     |> Repo.insert()
   end
@@ -28,5 +21,17 @@ defmodule Ebisu.Bittrex do
     |> order_by(desc: :updated_at)
     |> limit(20)
     |> Repo.all()
+  end
+
+  defp combine(ticker, summary) do
+    %{
+      high: summary["high"],
+      low: summary["low"],
+      volume: summary["volume"],
+      quoteVolume: summary["quoteVolume"],
+      last: ticker["lastTradeRate"],
+      bid: ticker["bidRate"],
+      ask: ticker["askRate"]
+    }
   end
 end
