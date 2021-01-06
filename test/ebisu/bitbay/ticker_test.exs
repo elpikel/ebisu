@@ -14,7 +14,8 @@ defmodule Ebisu.Bitbay.TickerTest do
     min: 46_794_371.0,
     updated_at: ~U[2020-12-08 19:59:14Z],
     volume: 61_700_119.0,
-    vwap: 86_528_207.0
+    vwap: 86_528_207.0,
+    rate: 10.0
   }
 
   describe "changeset/1" do
@@ -29,7 +30,8 @@ defmodule Ebisu.Bitbay.TickerTest do
           ask: {"can't be blank", [validation: :required]},
           vwap: {"can't be blank", [validation: :required]},
           average: {"can't be blank", [validation: :required]},
-          volume: {"can't be blank", [validation: :required]}
+          volume: {"can't be blank", [validation: :required]},
+          rate: {"can't be blank", [validation: :required]}
         ]
       } = Ticker.changeset(%{})
     end
