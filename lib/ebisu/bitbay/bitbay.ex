@@ -15,10 +15,10 @@ defmodule Ebisu.Bitbay do
     |> Repo.insert()
   end
 
-  def tickers() do
+  def tickers(limit \\ 20) do
     Ticker
     |> order_by(desc: :updated_at)
-    |> limit(20)
+    |> limit(^limit)
     |> Repo.all()
   end
 end
