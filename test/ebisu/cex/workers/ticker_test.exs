@@ -5,9 +5,12 @@ defmodule Ebisu.Cex.Worker.TickerTest do
   alias Ebisu.Cex.Ticker
 
   setup do
-    ticker_worker = TickerWorker.start_link(interval: 100)
+    start_supervised(%{
+      id: TickerWorker,
+      start: {TickerWorker, :start_link, [[interval: 100]]}
+    })
 
-    %{ticker_worker: ticker_worker}
+    :ok
   end
 
   test "inserts message" do

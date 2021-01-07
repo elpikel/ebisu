@@ -48,7 +48,8 @@ defmodule Ebisu.MixProject do
       {:plug_cowboy, "~> 2.4.1"},
       {:httpoison, "~> 1.7.0"},
       {:jason, "~> 1.2.2"},
-      {:chartkick, "~> 0.4.0"}
+      {:chartkick, "~> 0.4.0"},
+      {:mox, "~> 1.0", only: :test}
     ]
   end
 

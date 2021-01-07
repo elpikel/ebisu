@@ -10,6 +10,8 @@ use Mix.Config
 config :ebisu,
   ecto_repos: [Ebisu.Repo]
 
+config :ebisu, :http_client, Ebisu.Utils.Http
+
 # Configures the endpoint
 config :ebisu, EbisuWeb.Endpoint,
   url: [host: "localhost"],
