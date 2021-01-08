@@ -6,7 +6,7 @@ defmodule Ebisu.Exchange.Worker.TickerTest do
 
   import Mox
 
-  setup :verify_on_exit!, :set_mox_from_context
+  setup [:verify_on_exit!, :set_mox_from_context]
 
   setup do
     http_client = Application.get_env(:ebisu, :http_client)
