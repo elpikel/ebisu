@@ -1,5 +1,5 @@
 defmodule Ebisu.Bitbay.TickerTest do
-  use Ebisu.DataCase
+  use Ebisu.DataCase, async: true
 
   alias Ebisu.Bitbay.Ticker
 

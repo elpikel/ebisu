@@ -37,7 +37,7 @@ defmodule Ebisu.Exchange.Worker.TickerTest do
       start: {TickerWorker, :start_link, [[interval: 100]]}
     })
 
-    Process.sleep(200)
+    Process.sleep(150)
 
     assert Repo.aggregate(Ticker, :count) > 0
   end

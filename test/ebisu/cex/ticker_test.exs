@@ -1,5 +1,5 @@
 defmodule Ebisu.Cex.TickerTest do
-  use Ebisu.DataCase
+  use Ebisu.DataCase, async: true
 
   alias Ebisu.Cex.Ticker
 

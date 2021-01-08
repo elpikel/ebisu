@@ -1,5 +1,5 @@
 defmodule EbisuWeb.PageLiveTest do
-  use EbisuWeb.ConnCase
+  use EbisuWeb.ConnCase, async: true
 
   import Phoenix.LiveViewTest
 

@@ -1,5 +1,5 @@
 defmodule Ebisu.Bitbay.Clients.HttpTest do
-  use ExUnit.Case
+  use ExUnit.Case, async: true
 
   alias Ebisu.Bitbay.Clients.Http
 

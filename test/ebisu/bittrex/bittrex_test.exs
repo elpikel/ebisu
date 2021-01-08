@@ -1,5 +1,5 @@
 defmodule Ebisu.BittrexTest do
-  use Ebisu.DataCase
+  use Ebisu.DataCase, async: true
 
   alias Ebisu.Bittrex
   alias Ebisu.Bittrex.Ticker

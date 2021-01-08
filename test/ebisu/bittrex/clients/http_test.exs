@@ -1,5 +1,5 @@
 defmodule Ebisu.Bittrex.Clients.HttpTest do
-  use ExUnit.Case
+  use ExUnit.Case, async: true
 
   alias Ebisu.Bittrex.Clients.Http
 

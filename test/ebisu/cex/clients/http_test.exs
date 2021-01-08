@@ -1,5 +1,5 @@
 defmodule Ebisu.Cex.Clients.HttpTest do
-  use ExUnit.Case
+  use ExUnit.Case, async: true
 
   alias Ebisu.Cex.Clients.Http
 
