@@ -8,4 +8,10 @@ defmodule EbisuWeb.PageLiveTest do
     assert disconnected_html =~ "<canvas id=\"chart\""
     assert render(page_live) =~ "<canvas id=\"chart\""
   end
+
+  test "assings tickers on mount" do
+  end
+
+  test "assings received ticker" do
+  end
 end
