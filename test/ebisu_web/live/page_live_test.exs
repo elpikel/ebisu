@@ -28,7 +28,7 @@ defmodule EbisuWeb.PageLiveTest do
              "<canvas id=\"chart\" phx-update=\"ignore\" phx-hook=\"Chart\" data-tickers=\"{&quot;exchange&quot;:[],&quot;cex&quot;:[],&quot;bittrex&quot;:[],&quot;bitbay&quot;:[{&quot;y&quot;:7031507.8,&quot;x&quot;:&quot;13:26:08&quot;}]}\"></canvas>"
   end
 
-  setup do
+  test "assings received ticker", %{conn: conn} do
     http_client = Application.get_env(:ebisu, :http_client)
 
     Application.put_env(:ebisu, :http_client, Ebisu.Utils.MockHttp)
@@ -36,9 +36,7 @@ defmodule EbisuWeb.PageLiveTest do
     on_exit(fn ->
       Application.put_env(:ebisu, :http_client, http_client)
     end)
-  end
 
-  test "assings received ticker", %{conn: conn} do
     add_bitbay_ticker()
 
     expect(Ebisu.Utils.MockHttp, :get, 4, fn url ->
