@@ -3,7 +3,7 @@ defmodule Ebisu.Exchange.Worker.Ticker do
 
   alias Ebisu.Exchange
 
-  @default_interval 6_000
+  @interval Application.fetch_env!(:ebisu, :exchange_worker_interval)
 
   def start_link(state \\ []) do
     GenServer.start_link(__MODULE__, state)
@@ -26,6 +26,6 @@ defmodule Ebisu.Exchange.Worker.Ticker do
   end
 
   defp schedule_ticker_add(state) do
-    Process.send_after(self(), :add_ticker, Keyword.get(state, :interval, @default_interval))
+    Process.send_after(self(), :add_ticker, Keyword.get(state, :interval, @interval))
   end
 end
