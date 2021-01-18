@@ -17,7 +17,7 @@ defmodule EbisuWeb.Router do
   scope "/", EbisuWeb do
     pipe_through :browser
 
-    live "/", PageLive, :index
+    live "/", TickerLive, :index
   end
 
   # Other scopes may use custom stacks.

@@ -1,4 +1,4 @@
-defmodule EbisuWeb.PageLive do
+defmodule EbisuWeb.TickerLive do
   use EbisuWeb, :live_view
 
   alias Ebisu.Bitbay

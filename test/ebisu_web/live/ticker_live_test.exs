@@ -1,4 +1,4 @@
-defmodule EbisuWeb.PageLiveTest do
+defmodule EbisuWeb.TickerLiveTest do
   use EbisuWeb.ConnCase
 
   alias Ebisu.Factories.Bitbay, as: BitbayFactory
