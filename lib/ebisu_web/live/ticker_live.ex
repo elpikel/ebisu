@@ -31,6 +31,11 @@ defmodule EbisuWeb.TickerLive do
   end
 
   @impl true
+  def render(assigns) do
+    Phoenix.View.render(EbisuWeb.TickerView, "index.html", assigns)
+  end
+
+  @impl true
   def handle_info(%ExchangeTicker{} = ticker, socket) do
     handle_new_ticker(ticker, socket, :exchange)
   end
