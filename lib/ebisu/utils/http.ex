@@ -1,6 +1,6 @@
 defmodule Ebisu.Utils.Http do
   @timeout 5000
-  @callback get(String.t()) :: term | no_return
+  @callback get(String.t()) :: term() | no_return() | {:error, term()}
 
   def get(url) do
     case HTTPoison.get(url, [{"content-type", "application/json"}], recv_timeout: @timeout) do
