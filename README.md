@@ -1,6 +1,7 @@
-# Ebisu
+Check out full description at: [Using LiveView and GenServers to track cryptocurrency exchanges](https://cmdarek.com/pages/using-liveview-and-genservers-to-track-cryptocurrency-exchanges.html)
 
-To start your Phoenix server:
+
+To start application:
 
   * Install dependencies with `mix deps.get`
   * Create and migrate your database with `mix ecto.setup`
@@ -9,12 +10,3 @@ To start your Phoenix server:
 
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
-Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
-
-## Learn more
-
-  * Official website: https://www.phoenixframework.org/
-  * Guides: https://hexdocs.pm/phoenix/overview.html
-  * Docs: https://hexdocs.pm/phoenix
-  * Forum: https://elixirforum.com/c/phoenix-forum
-  * Source: https://github.com/phoenixframework/phoenix
