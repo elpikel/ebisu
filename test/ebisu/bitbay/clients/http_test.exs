@@ -15,4 +15,10 @@ defmodule Ebisu.Bitbay.Clients.HttpTest do
     assert ticker["average"] != nil
     assert ticker["volume"] != nil
   end
+
+  test "fetches rate" do
+    rate = Http.get_rate()
+
+    assert is_number(rate)
+  end
 end
