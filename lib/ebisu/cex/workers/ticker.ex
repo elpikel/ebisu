@@ -18,9 +18,11 @@ defmodule Ebisu.Cex.Worker.Ticker do
   def handle_info(:add_ticker, state) do
     schedule_ticker_add(state)
 
-    {:ok, ticker} = Cex.add_ticker()
+    Task.start(fn ->
+      {:ok, ticker} = Cex.add_ticker()
 
-    Phoenix.PubSub.broadcast(Ebisu.PubSub, "cex_ticker", ticker)
+      Phoenix.PubSub.broadcast(Ebisu.PubSub, "cex_ticker", ticker)
+    end)
 
     {:noreply, state}
   end

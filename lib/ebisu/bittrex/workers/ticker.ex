@@ -18,9 +18,11 @@ defmodule Ebisu.Bittrex.Worker.Ticker do
   def handle_info(:add_ticker, state) do
     schedule_ticker_add(state)
 
-    {:ok, ticker} = Bittrex.add_ticker()
+    Task.start(fn ->
+      {:ok, ticker} = Bittrex.add_ticker()
 
-    Phoenix.PubSub.broadcast(Ebisu.PubSub, "bittrex_ticker", ticker)
+      Phoenix.PubSub.broadcast(Ebisu.PubSub, "bittrex_ticker", ticker)
+    end)
 
     {:noreply, state}
   end

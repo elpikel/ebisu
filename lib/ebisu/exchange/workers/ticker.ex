@@ -18,9 +18,11 @@ defmodule Ebisu.Exchange.Worker.Ticker do
   def handle_info(:add_ticker, state) do
     schedule_ticker_add(state)
 
-    {:ok, ticker} = Exchange.add_ticker()
+    Task.start(fn ->
+      {:ok, ticker} = Exchange.add_ticker()
 
-    Phoenix.PubSub.broadcast(Ebisu.PubSub, "exchange_ticker", ticker)
+      Phoenix.PubSub.broadcast(Ebisu.PubSub, "exchange_ticker", ticker)
+    end)
 
     {:noreply, state}
   end
