@@ -1,4 +1,4 @@
-Check out full description at: [Using LiveView and GenServers to track cryptocurrency exchanges](https://cmdarek.com/pages/using-liveview-and-genservers-to-track-cryptocurrency-exchanges.html)
+Check out full description at: [Using LiveView and GenServers to track cryptocurrency exchanges](https://cmdarek.com/pages/using-liveview-and-genservers-to-track-btc-price.html)
 
 
 To start application:
