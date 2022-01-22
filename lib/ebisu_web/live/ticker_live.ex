@@ -9,6 +9,7 @@ defmodule EbisuWeb.TickerLive do
   alias Ebisu.Bittrex.Ticker, as: BittrexTicker
   alias Ebisu.Cex
   alias Ebisu.Cex.Ticker, as: CexTicker
+  alias Poison
 
   @impl true
   def mount(_params, _session, socket) do

@@ -1,0 +1,9 @@
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
+<canvas
+ id="chart"
+ phx-update="ignore"
+ phx-hook="Chart"
+ data-tickers={@tickers |> Poison.encode!()}
+>
+</canvas>
