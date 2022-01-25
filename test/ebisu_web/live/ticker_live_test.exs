@@ -12,7 +12,7 @@ defmodule EbisuWeb.TickerLiveTest do
 
   setup [:verify_on_exit!, :set_mox_from_context]
 
-  test "assings tickers on mount", %{conn: conn} do
+  test "assigns tickers on mount", %{conn: conn} do
     add_bitbay_ticker()
 
     conn = get(conn, "/")
@@ -28,7 +28,7 @@ defmodule EbisuWeb.TickerLiveTest do
              "<canvas id=\"chart\" phx-update=\"ignore\" phx-hook=\"Chart\" data-tickers=\"{&quot;exchange&quot;:[],&quot;cex&quot;:[],&quot;bittrex&quot;:[],&quot;bitbay&quot;:[{&quot;y&quot;:7031507.8,&quot;x&quot;:&quot;13:26:08&quot;}]}\"></canvas>"
   end
 
-  test "assings received ticker", %{conn: conn} do
+  test "assigns received ticker", %{conn: conn} do
     http_client = Application.get_env(:ebisu, :http_client)
 
     Application.put_env(:ebisu, :http_client, Ebisu.Utils.MockHttp)
